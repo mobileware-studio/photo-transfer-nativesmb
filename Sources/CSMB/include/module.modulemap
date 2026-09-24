@@ -1,0 +1,12 @@
+module CSMB {
+ header "apple/config.h"
+ header "smb2/smb2-errors.h"
+ header "smb2/smb2.h"
+ header "smb2/libsmb2.h"
+ header "smb2/libsmb2-dcerpc.h"
+ header "smb2/libsmb2-dcerpc-srvsvc.h"
+ header "libsmb2-private.h"
+ header "smb2/libsmb2-raw.h"
+ header "pta_dns.h"
+ export *
+}
