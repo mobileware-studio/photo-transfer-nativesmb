@@ -30,7 +30,11 @@ fallback before TREE_CONNECT; DFS trees are rejected and share-required encrypti
 is honored; file and directory opens do not share write/delete
 access and open final reparse points themselves. The adapter retains guarded
 ancestor-directory handles and rejects reparse points. The public API does not
-expose delete, rename, DFS referrals, cached credentials, or SMB1.
+expose delete, rename, DFS referrals, cached credentials, or SMB1. Internally, an
+upload that fails or is cancelled after its own exclusive create removes that file
+on a fresh, time-bounded connection, using the raw CREATE (DELETE, opening a reparse
+point itself and refusing it), FILE_DISPOSITION_INFORMATION and CLOSE commands from
+`libsmb2-raw.h`; no C source change.
 
 Local patches to lib/init.c and include/libsmb2-private.h: active-context list
 insertion/removal/membership checks are locked; local file handles are tracked by
